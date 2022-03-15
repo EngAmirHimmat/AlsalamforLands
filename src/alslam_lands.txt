@@ -1,0 +1,163 @@
+create table local (
+   local_name varchar2(20),
+   local_num number(4),
+   constraint pk_local primary key
+  (local_num));
+
+create table adminstrative_unit (
+    local_num number(4),
+    adm_num number(2),
+   adm_name varchar2(20),
+    constraint pk_adm primary key(adm_num),
+    constraint fk_land_adm foreign key(
+   local_num)references local(local_num));
+
+create table distric(
+    local_num number(4),
+    adm_num number(2),
+    dis_num number(2),
+     dis_name varchar2(20),
+    constraint pk_distric primary key
+    (dis_num),
+    constraint fk_distric_local foreign key
+   (local_num) references local(local_num),
+   constraint fk_distric_adm foreign key(adm_num)references  adminstrative_unit(adm_num));
+
+
+create table citizens(
+   citizens_id number(2),
+   citizens_name varchar2(20),
+    citizen_phone number(10),
+   constraint pk_citizen primary key(citizens_id),
+   local_num number(4),
+   adm_num number(2),
+   dis_num number(2),
+   constraint fk_citi_dis  foreign key (dis_num)  references distric( dis_num),
+  constraint fk_citi_local foreign key (local_num) references local(local_num),
+   constraint fk_citi_adm foreign key(adm_num)references  adminstrative_unit(adm_num));
+
+create table degree_validity(
+   dvail_num number (5),
+    dvail_name varchar2(35),
+    constraint pk_degree primary key(dvail_num));
+
+create table users(
+  user_dif varchar2(30),
+   user_num number(5),
+   user_name varchar2(30),
+    dvail_num number(5),
+    constraint pk_user primary key(user_num),
+   constraint fk_user_num foreign key (dvail_num)references degree_validity(dvail_num));
+
+
+create table  farm_componant (
+   farm_com number(2),
+   farm_name varchar2(35),
+   constraint pk_farm_cmponant primary key(farm_com));
+
+create table type_land(
+         local_num number(4),
+         adm_num number(2),
+         land_num number(2),
+       type_land varchar2(5),
+         degree_land number(2),
+         areay_land number(5),
+         citizens_num number(5),
+         date_num date,
+       num_inter  number(5),
+    lan_ty_id number (5),
+       constraint pk_lan primary key(lan_ty_id), constraint fk_land_id_com  foreign key (land_num)  references land_componant (land_com));
+
+
+create table land_offered(
+      local_num number(4),
+       adm_num number(2),
+        dis_num number(2),
+        land_num number(2),
+        areay_land number(5),
+        degree_land number(2),
+        price number(9),
+      citizens_num number(5),
+     supply_state varchar2(5),
+      type_supply number(1),
+      date_supply date,
+      date_inter date,
+       num_inter number(5),
+    constraint fk_offer_local foreign key(local_num) references local(local_num),
+    constraint fk_offer_discrit foreign key(dis_num) references distric(dis_num),
+    constraint fk_cmm_id foreign key(citizens_num) references citizens(citizens_id),
+   constraint fk_land_idcc_com foreign key(land_num) references land_componant(land_com));
+
+
+ create table farm_details ( 
+     local_num number(2),
+     adm_num number(2),
+      farm_com number(2),
+    date_inter date,
+    enter_numb number(5),
+      constraint fk_details_local foreign key (local_num) references local(local_num),
+    constraint fk_details_adm  foreign key (adm_num)  references adminstrative_unit(adm_num),
+    constraint k_details_componant foreign key(farm_com) references farm_componant( farm_com ));
+
+
+create table required_farms(
+      local_num number(2),
+       adm_num number(2),
+       areay_land number(5),
+       price number(9),
+       citizens_id number(5),
+        app_state number(1),
+       date_order date,
+       damand_type number(1),
+      date_inter date,
+       num_inter number(5),
+      constraint e_fk foreign key (local_num) references local(local_num),
+      constraint v_fk foreign key (adm_num)  references adminstrative_unit(adm_num),
+     constraint fk_citi_nu foreign key (citizens_id) references citizens (citizens_id));
+
+
+
+ create table sell_hist(
+        local_num number(2),
+         adm_num number(2),
+          farm_num number(2),
+         citi_id number (5), 
+	price_sell number(9),
+     date_sell date,
+     date_enter date,
+     areay number(5),
+	enter_num number(5),
+     constraint x_fk foreign key (local_num) references local(local_num),
+    constraint g_fk foreign key (adm_num)  references adminstrative_unit(adm_num),
+    constraint fk_h_lnfm foreign key (farm_num ) references farm_componant (farm_com ),
+    constraint c_fk foreign key ( citi_id) references citizens(citizens_id));
+
+
+create table famr_rent_hits (
+   local_num number(2),
+    adm_num number(2),
+   farm_num number(2),
+    citi_idr number (5),
+    area number(5),
+   data_rent date ,
+    date_enter date ,
+    enter_id number(5),
+   constraint b_fk  foreign key (local_num) references local(local_num),
+  constraint y_fk  foreign key (adm_num)  references adminstrative_unit(adm_num),
+    constraint oj_fk  foreign key ( citi_idr)references citizens(citizens_id),
+   constraint q_fk foreign key (farm_num ) references farm_componant (farm_com ));
+
+
+
+0111286658
+عبدالله حسين
+
+
+
+
+
+
+
+
+
+

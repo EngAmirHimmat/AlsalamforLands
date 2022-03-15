@@ -1,0 +1,74 @@
+/*header*/
+.header{
+	background: #fafafa;
+	height: 20%;
+	font-family: tahoma; 
+	font-size: 50px;
+	color: #aa2626;
+}
+/*menu bar style*/
+.menuBar{
+	background: url('../img/menu.png');
+}
+.menuBar ul{
+	list-style: none;
+	background: url('../img/menu.png');
+}
+.menuBar ul li{
+	float: right;
+	padding: 15px 15px;
+	margin-left: 5px;
+
+}
+.menuBar ul li a{
+	text-decoration: none;
+	font-family: tahoma;
+	font-size: 20px;
+	color: #fe6036;
+	padding: 10px 3px;
+	border-radius: 3px;
+}
+.menuBar ul li a:hover{
+	background: #fe6036;
+	color: #fff;
+} 
+.c{
+	clear: both; 
+}
+.select{
+	background: #fff;
+	color: #fe6036;
+}
+/*menu bar2*/
+.menuBar2{
+	background: gray;
+}
+.menuBar2 ul{
+	list-style: none;
+	background: gray;
+}
+.menuBar2 ul li{
+	float: right;
+	padding: 15px 15px;
+	margin-left: 5px;
+
+}
+.menuBar2 ul li a{
+	text-decoration: none;
+	font-family: tahoma;
+	font-size: 15px;
+	color: white;
+	padding: 10px 3px;
+	border-radius: 3px;
+}
+.menuBar2 ul li a:hover{
+	background: #fe6036;
+	color: #fff;
+} 
+/*MainMenu*/
+.carts{
+	color: red;
+}
+.cart1{
+
+}
